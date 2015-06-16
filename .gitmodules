@@ -4,3 +4,6 @@
 [submodule "tools/flaimapper_galaxy_wrapper"]
 	path = tools/flaimapper_galaxy_wrapper
 	url = https://github.com/ErasmusMC-Bioinformatics/flaimapper_galaxy_wrapper
+[submodule "tools/fuma_galaxy_wrapper"]
+	path = tools/fuma_galaxy_wrapper
+	url = https://github.com/ErasmusMC-Bioinformatics/fuma_galaxy_wrapper
