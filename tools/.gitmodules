@@ -1,0 +1,3 @@
+[submodule "featurecounts_galaxy_wrapper"]
+	path = featurecounts_galaxy_wrapper
+	url = https://github.com/ErasmusMC-Bioinformatics/featurecounts_galaxy_wrapper
