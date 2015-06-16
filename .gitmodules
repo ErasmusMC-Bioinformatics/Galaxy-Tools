@@ -7,3 +7,6 @@
 [submodule "tools/fuma_galaxy_wrapper"]
 	path = tools/fuma_galaxy_wrapper
 	url = https://github.com/ErasmusMC-Bioinformatics/fuma_galaxy_wrapper
+[submodule "tools/unafold_galaxy_wrapper"]
+	path = tools/unafold_galaxy_wrapper
+	url = https://github.com/ErasmusMC-Bioinformatics/unafold_galaxy_wrapper
