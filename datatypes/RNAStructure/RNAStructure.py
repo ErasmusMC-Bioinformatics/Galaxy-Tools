@@ -22,8 +22,8 @@ class DotBracket ( Sequence ):
     edam_format = "format_1457"
     file_ext = "dbn"
     
-    sequence_regexp = re.compile( "^[ACGTURYKMSWBDHVN]*" )
-    structure_regexp = re.compile( "^[\(\)\.]*" )
+    sequence_regexp = re.compile( "^[ACGTURYKMSWBDHVN]+$", re.I)
+    structure_regexp = re.compile( "^[\(\)\.\[\]]*" )
     
     def set_meta( self, dataset, **kwd ):
         """
@@ -51,8 +51,7 @@ class DotBracket ( Sequence ):
     
     def sniff(self, filename):
         """
-        The format is as follows, although it remains unclear whether
-        the Dot-Bracket format may contain multiple sequences per file:
+        The Dot-Bracket format is as follows:
         
         >sequenceName1
         CCCaaaGGG
@@ -60,37 +59,50 @@ class DotBracket ( Sequence ):
         >sequenceName2
         GGGuuuCCC
         (((...)))
+        
+        Because it remains unclear whether the Dot-Bracket format may
+        contain multiple sequences per file, sniffing is only applied
+        on the first 3 lines.
         """
+    
+    i = 0
+    pairs = False
+    
+    with open( filename ) as handle:
+        for line in handle:
+            line = line.strip()
+            
+            state = i % 3
+            
+            #header line
+            if state == 0:
+                if(line[0] != '>'):
+                    return False
+            
+            #sequence line
+            elif state == 1:
+                if not sequence_regexp.match(line):
+                    return False
+                else:
+                    sequence_size = len(line)
+            
+            #dot-bracket structure line
+            elif state == 2:
+                if (sequence_size != len(line)) or (not structure_regexp.match(line)) or (line.count('(') != line.count(')')) or (line.count('[') != line.count(']')):
+                    return False
+                else:
+                    return True
+            
+            i += 1
         
-        i = 0
-        pairs = False
-        
-        with open( filename ) as handle:
-            for line in handle:
-                line = line.strip()
-                
-                state = i % 3
-                
-                if state == 0:#header line
-                    if(line[0] != '>'):
-                        return False
-                elif state == 1:#sequence line
-                    if not sequence_regexp.match(line.upper()):
-                        return False
-                    else:
-                        sequence_size = len(line)
-                elif state == 2:#dot-bracket structure line
-                    if (sequence_size != len(line)) or (not structure_regexp.match(line)):
-                        return False
-                
-                i += 1
-        return True
+        # Number of lines is less than 3
+        return False
 
-class CT( Tabular ):
+class ConnectivityTable( Tabular ):
     edam_format = "format_3309"
     file_ext = "ct"
     
-    header_regexp = re.compile( "^[0-9]+" + "(?:\t|[ ]+)" + "[^ \t]+")
+    header_regexp = re.compile( "^[0-9]+" + "(?:\t|[ ]+)" + ".*?" + "(?:ENERGY|energy|dG)")
     structure_regexp = re.compile( "^[0-9]+" + "(?:\t|[ ]+)" +  "[ACGTURYKMSWBDHVN]+" + "(?:\t|[ ]+)" + "[^\t]+" + "(?:\t|[ ]+)" + "[^\t]+" + "(?:\t|[ ]+)" + "[^\t]+" + "(?:\t|[ ]+)" + "[^\t]+")
     
     def __init__(self, **kwd):
@@ -109,7 +121,34 @@ class CT( Tabular ):
         dataset.metadata.data_lines = data_lines
     
     def sniff(self, filename):
+        """
+        The ConnectivityTable (CT) basic format is defined as follows:
         
+5	energy = -12.3	sequence name
+1	G	0	2	0	1
+2	A	1	3	0	2
+3	A	2	4	0	3
+4	A	3	5	0	4
+5	C	4	6	1	5
+        
+        The links given at the edam ontology page do not indicate what
+        type of separator is used (space or tab) while different
+        implementations exist. The implementation by RNAStructure is as
+        follows:
+
+   10    ENERGY = -34.8  seqname
+    1 G       0    2    9    1
+    2 G       1    3    8    2
+    3 G       2    4    7    3
+    4 a       3    5    0    4
+    5 a       4    6    0    5
+    6 a       5    7    0    6
+    7 C       6    8    3    7
+    8 C       7    9    2    8
+    9 C       8   10    1    9
+   10 a       9    0    0   10
+
+        """
         filename = filename.file_name
         
         i = 0
