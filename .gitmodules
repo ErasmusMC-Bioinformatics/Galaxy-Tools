@@ -10,3 +10,6 @@
 [submodule "tools/unafold_galaxy_wrapper"]
 	path = tools/unafold_galaxy_wrapper
 	url = https://github.com/ErasmusMC-Bioinformatics/unafold_galaxy_wrapper
+[submodule "tools/pysam_galaxy_wrapper"]
+	path = tools/pysam_galaxy_wrapper
+	url = https://github.com/ErasmusMC-Bioinformatics/pysam_galaxy_wrapper.git
