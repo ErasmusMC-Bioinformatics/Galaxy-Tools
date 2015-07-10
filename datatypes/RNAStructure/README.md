@@ -1,1 +1,0 @@
-This file contains descriptors of dataformats for RNA 2D structures
