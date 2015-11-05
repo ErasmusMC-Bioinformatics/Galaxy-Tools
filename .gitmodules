@@ -25,3 +25,6 @@
 [submodule "tools/show_metadata_galaxy_wrapper"]
 	path = tools/show_metadata_galaxy_wrapper
 	url = https://github.com/ErasmusMC-Bioinformatics/show_metadata_galaxy_wrapper.git
+[submodule "tools/samtools_parallel_mpileup_galaxy_wrapper"]
+	path = tools/samtools_parallel_mpileup_galaxy_wrapper
+	url = https://github.com/ErasmusMC-Bioinformatics/samtools_parallel_mpileup_galaxy_wrapper
