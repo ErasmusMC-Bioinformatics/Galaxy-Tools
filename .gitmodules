@@ -31,3 +31,6 @@
 [submodule "tools/varscan_mpileup_from_bam_galaxy_wrapper"]
 	path = tools/varscan_mpileup_from_bam_galaxy_wrapper
 	url = https://github.com/ErasmusMC-Bioinformatics/varscan_mpileup_from_bam_galaxy_wrapper.git
+[submodule "tools/ega_client_galaxy_wrapper"]
+	path = tools/ega_client_galaxy_wrapper
+	url = https://github.com/ErasmusMC-Bioinformatics/ega_client_galaxy_wrapper.git
