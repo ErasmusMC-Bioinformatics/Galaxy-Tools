@@ -16,6 +16,3 @@
 [submodule "tools/samtools_parallel_mpileup_galaxy_wrapper"]
 	path = tools/samtools_parallel_mpileup_galaxy_wrapper
 	url = https://github.com/ErasmusMC-Bioinformatics/samtools_parallel_mpileup_galaxy_wrapper
-[submodule "tools/varscan_mpileup_from_bam_galaxy_wrapper"]
-	path = tools/varscan_mpileup_from_bam_galaxy_wrapper
-	url = https://github.com/ErasmusMC-Bioinformatics/varscan_mpileup_from_bam_galaxy_wrapper.git
