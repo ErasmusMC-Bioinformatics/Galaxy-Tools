@@ -13,6 +13,3 @@
 [submodule "tools/crossmap_galaxy_wrapper"]
 	path = tools/crossmap_galaxy_wrapper
 	url = https://github.com/ErasmusMC-Bioinformatics/crossmap_galaxy_wrapper.git
-[submodule "tools/samtools_parallel_mpileup_galaxy_wrapper"]
-	path = tools/samtools_parallel_mpileup_galaxy_wrapper
-	url = https://github.com/ErasmusMC-Bioinformatics/samtools_parallel_mpileup_galaxy_wrapper
