@@ -7,9 +7,6 @@
 [submodule "tools/pysam_galaxy_wrapper"]
 	path = tools/pysam_galaxy_wrapper
 	url = https://github.com/ErasmusMC-Bioinformatics/pysam_galaxy_wrapper.git
-[submodule "tools/segmentation_fold_galaxy_wrapper"]
-	path = tools/segmentation_fold_galaxy_wrapper
-	url = https://github.com/ErasmusMC-Bioinformatics/segmentation_fold_galaxy_wrapper.git
 [submodule "tools/crossmap_galaxy_wrapper"]
 	path = tools/crossmap_galaxy_wrapper
 	url = https://github.com/ErasmusMC-Bioinformatics/crossmap_galaxy_wrapper.git
